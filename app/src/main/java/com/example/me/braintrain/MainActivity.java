@@ -25,7 +25,7 @@ CountDownTimer animateTimer;
 
     public void onClick(View v) {
         mPlayer.release();
-        Intent intent = new Intent(MainActivity.this, GamePlay.class);
+        Intent intent = new Intent(MainActivity.this, Menu.class);
         startActivity(intent);
     }
 

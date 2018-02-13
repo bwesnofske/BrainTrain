@@ -69,7 +69,7 @@ CountDownTimer gameClock;
 
         setContentView(R.layout.game_screen);
 
-        gameClock = new CountDownTimer(30000,1000) {
+        gameClock = new CountDownTimer(20000,1000) {
             @Override
             public void onTick(long l) {
                 long seconds = l / 1000;

@@ -64,7 +64,7 @@
             android:gravity="center"
             android:onClick="selection"
             android:tag="0"
-            android:text="TextView"
+            android:text="Choices"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -76,7 +76,7 @@
             android:gravity="center"
             android:onClick="selection"
             android:tag="1"
-            android:text="TextView"
+            android:text="Will"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -88,7 +88,7 @@
             android:gravity="center"
             android:onClick="selection"
             android:tag="2"
-            android:text="TextView"
+            android:text="Be"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -100,7 +100,7 @@
             android:gravity="center"
             android:onClick="selection"
             android:tag="3"
-            android:text="TextView"
+            android:text="Here"
             android:textSize="24sp"
             android:textStyle="bold" />
     </GridLayout>
