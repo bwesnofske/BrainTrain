@@ -54,12 +54,6 @@ public class GameOver extends Activity {
 
 
 
-        //String[] highScores = { "Brian: 2", "Mike: 1", "John: 0" };
-
-        //saveHighScores(highScores);
-
-        //checkHighScores(highScores, problemCorrectCount);
-
     }
 
     public void checkHighScore() {
@@ -74,11 +68,6 @@ public class GameOver extends Activity {
         } else {
             highScoreView.setText("Current High Score " + currentHighScore);
         }
-
-        Log.i("Current High Score", (" " + currentHighScore));
-
-        //Log.i("HighScore", sharedPreferences.getInt("CURHIGHSCORE","HIGHSCORE"));
-
 
     }
 

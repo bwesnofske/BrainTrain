@@ -2,11 +2,9 @@ package com.example.me.braintrain;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.TextView;
 
 /**
  * Created by Me on 12/9/2017.
@@ -27,9 +25,16 @@ public class Menu extends Activity {
 
     }
 
-    public void onClick(View v) {
+    public void onClickAddUp(View v) {
 
         Intent intent = new Intent(Menu.this, GamePlay.class);
+        startActivity(intent);
+
+    }
+
+    public void onClickPhaseOut(View v) {
+
+        Intent intent = new Intent(Menu.this, PhaseGamePlay.class);
         startActivity(intent);
 
     }
