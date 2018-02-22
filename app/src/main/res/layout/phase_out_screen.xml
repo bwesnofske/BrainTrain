@@ -70,6 +70,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="400dp"
+        android:tag="first"
         android:onClick="generatePhase"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
@@ -114,8 +115,7 @@
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/transparent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/moonView1"
@@ -126,8 +126,7 @@
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/transparent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/moonView2"
@@ -138,8 +137,7 @@
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="@+id/titleView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/transparent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/sameView"
@@ -150,6 +148,8 @@
         android:background="@android:color/transparent"
         android:gravity="center"
         android:includeFontPadding="false"
+        android:onClick="generatePhase"
+        android:tag="same"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
@@ -167,6 +167,8 @@
         android:layout_marginTop="350dp"
         android:gravity="center"
         android:includeFontPadding="false"
+        android:onClick="generatePhase"
+        android:tag="different"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
         android:textStyle="bold"

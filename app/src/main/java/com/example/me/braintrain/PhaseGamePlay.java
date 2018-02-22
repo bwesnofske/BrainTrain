@@ -1,6 +1,7 @@
 package com.example.me.braintrain;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.media.MediaPlayer;
@@ -14,8 +15,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,28 +48,32 @@ public class PhaseGamePlay extends Activity {
     int previousPhase;
     int currentPhase;
     int imageViewTurn;
+    int score;
+    int scoreStreak;
 
     Random random = new Random();
 
+    String phaseCompare;
+    String answer;
+
+    boolean firstRound;
 
     MediaPlayer mPlayer;
-
-    //@GlideModule
-    //public final class MyAppGlideModule extends AppGlideModule {}
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
+        int score = 0;
         imageViewTurn = 0;
+        firstRound = true;
 
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.phase_out_screen);
 
         myImageList = new int[]{
-                R.drawable.moonphase1, R.drawable.moonphase2, R.drawable.moonphase3, R.drawable.moonphase4,
-                R.drawable.moonphase5, R.drawable.moonphase6, R.drawable.moonphase7};
+                R.drawable.moonphase1, R.drawable.moonphase2, R.drawable.moonphase4, R.drawable.moonphase6, R.drawable.moonphase7};
 
 
         outView = (ImageView) findViewById(R.id.outView);
@@ -100,7 +103,6 @@ public class PhaseGamePlay extends Activity {
                 .load(R.drawable.outaltered)
                 .into(outView);
 
-
     }
 
 
@@ -119,56 +121,121 @@ public class PhaseGamePlay extends Activity {
         outView.animate().translationXBy(-2000);
         titleView.animate().translationXBy(2000);
 
-        //playPhaser();
 
-
-        sameView.setText("SAME");
-        sameView.setBackgroundColor(Color.parseColor("#FFAE2050"));
-        sameView.animate().translationXBy(2000f);
-
-
-        differentView.setText("DIFFERENT");
-        differentView.setBackgroundColor(Color.parseColor("#FF1F35C3"));
-        differentView.animate().translationXBy(-2000f);
 
         answerView2.setText("Remember This Image! Click Here To Begin");
 
-        currentPhase = random.nextInt(6);
+        currentPhase = random.nextInt(4);
 
         Glide.with(this)
                 .load(myImageList[currentPhase])
                 .into(moonView0);
 
+        //imageViewTurn = 1;
         //mPlayer.release();
     }
 
 
-    public void generatePhase(View view){
 
-        answerView2.setText("Is This Image The Same?");
-        previousPhase = currentPhase;
-        currentPhase = random.nextInt(6);
+    public void generatePhase(View view) {
+        TextView answerChosen = (TextView) view;
+        // Identifies which imageview was clicked for token placement
+        answer = answerChosen.getTag().toString();
+        Log.i("answer", answer);
 
-        //button listener
+        if (firstRound) {
+            sameView.setText("SAME");
+            sameView.setBackgroundColor(Color.parseColor("#FFAE2050"));
+            sameView.animate().translationXBy(2000f);
 
-        if (imageViewTurn == 0) {
-            Glide.with(this)
-                    .load(myImageList[currentPhase])
-                    .into(moonView0);
-        } else if (imageViewTurn == 1) {
-            Glide.with(this)
-                    .load(myImageList[currentPhase])
-                    .into(moonView1);
-        } else if (imageViewTurn == 2) {
-            Glide.with(this)
-                    .load(myImageList[currentPhase])
-                    .into(moonView2);
+
+            differentView.setText("DIFFERENT");
+            differentView.setBackgroundColor(Color.parseColor("#FF1F35C3"));
+            differentView.animate().translationXBy(-2000f);
+
+            answerView2.setText("Is This Image The Same?");
+
+            // we get previous phase and current phase for first round
+            previousPhase = currentPhase;
+            currentPhase = random.nextInt(4);
+
+            if (imageViewTurn == 0) {
+                //moonView2.animate().translationXBy(-2000)
+                        //.setDuration(1000);
+                Glide.with(this)
+                        .load(myImageList[currentPhase])
+                        .into(moonView0);
+                //moonView0.animate().translationXBy(-2000)
+                        //.setDuration(1000);
+            } else if (imageViewTurn == 1) {
+                //moonView0.animate().translationXBy(-2000)
+                        //.setDuration(1000);
+                //moonView1.setTranslation;
+                Glide.with(this)
+                        .load(myImageList[currentPhase])
+                        .into(moonView1);
+
+            } else if (imageViewTurn == 2) {
+                Glide.with(this)
+                        .load(myImageList[currentPhase])
+                        .into(moonView2);
+            }
+
+
+            firstRound = false;
+
+
+        } else {
+
+            if (currentPhase == previousPhase) {
+                phaseCompare = "same";
+            } else {
+                phaseCompare = "different";
+            }
+
+
+            if ((answer.equals("same")) && (phaseCompare.equals("same"))) {
+                answerView2.setText("Correct!");
+                score++;
+            } else if ((answer.equals("different")) && (phaseCompare.equals("different"))) {
+                answerView2.setText("Correct!");
+                score++;
+
+            } else {
+                answerView2.setText("Sorry!");
+            }
+
+
+
+            previousPhase = currentPhase;
+            currentPhase = random.nextInt(4);
+
+            if (imageViewTurn == 0) {
+                Glide.with(this)
+                        .load(myImageList[currentPhase])
+                        .into(moonView0);
+
+            } else if (imageViewTurn == 1) {
+                Glide.with(this)
+                        .load(myImageList[currentPhase])
+                        .into(moonView1);
+
+            } else if (imageViewTurn == 2) {
+                Glide.with(this)
+                        .load(myImageList[currentPhase])
+                        .into(moonView2);
+            }
+
+        /*
+            if (imageViewTurn < 2) {
+                imageViewTurn++;
+            } else {
+                imageViewTurn = 0;
+            }
+
+        */
+
         }
-
-        if ()
-
-
-
     }
 
     public void animateImageOff(View view, ImageView imageView){
