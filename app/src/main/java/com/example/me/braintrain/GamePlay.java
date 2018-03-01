@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -60,6 +62,7 @@ MediaPlayer mPlayer2;
 Random rand = new Random();
 
 CountDownTimer gameClock;
+
 
 
     @Override
@@ -138,6 +141,7 @@ CountDownTimer gameClock;
 
     // When an answer(textView) is selected
     public void selection(View view) {
+
 
         TextView selection = (TextView) view;
 
