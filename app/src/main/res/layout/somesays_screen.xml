@@ -52,7 +52,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="400dp"
-        android:onClick="gameStart"
+        android:onClick="saysGameStart"
         android:text="Click to Start"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
@@ -82,20 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/problemView" />
 
     <ImageView
-        android:id="@+id/outView"
-        android:layout_width="146dp"
-        android:layout_height="62dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="260dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.715"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/outaltered" />
-
-    <ImageView
-        android:id="@+id/titleView"
+        android:id="@+id/noGlowView"
         android:layout_width="380dp"
         android:layout_height="200dp"
         android:layout_marginEnd="8dp"
@@ -104,66 +91,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/phase" />
-
-    <ImageView
-        android:id="@+id/moonView0"
-        android:layout_width="228dp"
-        android:layout_height="239dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/moonView1"
-        android:layout_width="228dp"
-        android:layout_height="239dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/sameView"
-        android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="350dp"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:onClick="generatePhase"
-        android:tag="same"
-        android:textAlignment="center"
-        android:textColor="@android:color/background_light"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/differentView"
-        android:layout_width="150dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="350dp"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:onClick="generatePhase"
-        android:tag="different"
-        android:textColor="@android:color/background_light"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sameView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:srcCompat="@drawable/ssoff" />
 
 </android.support.constraint.ConstraintLayout>

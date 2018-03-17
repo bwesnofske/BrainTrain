@@ -57,6 +57,8 @@ int problemCorrectCount = 0;
 int correctView = 0;
 int questionCount = 0;
 
+String gameName;
+
 MediaPlayer mPlayer2;
 
 Random rand = new Random();
@@ -88,6 +90,7 @@ CountDownTimer gameClock;
                 Intent intent = new Intent(GamePlay.this,GameOver.class);
                 intent.putExtra("problemCorrectCount", problemCorrectCount);
                 intent.putExtra("questionCount", questionCount);
+                intent.putExtra("gameName", gameName);
                 startActivity(intent);
             }
         };

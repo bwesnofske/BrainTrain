@@ -1,6 +1,7 @@
 package com.example.me.braintrain;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.media.MediaPlayer;
@@ -50,11 +51,12 @@ public class PhaseGamePlay extends Activity {
     ImageView moonView0;
     ImageView moonView1;
 
-
     TextView sameView;
     TextView differentView;
     TextView answerView;
     TextView answerView2;
+    TextView scoreView;
+    TextView timerView;
 
     TextView gameStart;
 
@@ -63,13 +65,15 @@ public class PhaseGamePlay extends Activity {
     int previousPhase;
     int currentPhase;
     int imageViewTurn;
-    int score;
-    int scoreStreak;
+    int problemCorrectCount;
+    int correctView = 0;
+    int questionCount = 0;
 
     Random random = new Random();
 
     String phaseCompare;
     String answer;
+    String gameName;
 
     boolean firstRound;
 
@@ -85,11 +89,34 @@ public class PhaseGamePlay extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        
 
-        int score = 0;
+        gameClock = new CountDownTimer(20000,1000) {
+
+            @Override
+            public void onTick(long l) {
+                long seconds = l / 1000;
+                if (seconds < 10) {
+                    timerView.setText("00:0" + l / 1000);
+                } else {
+                    timerView.setText("00:" + l / 1000);
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                Intent intent = new Intent(PhaseGamePlay.this, GameOver.class);
+                intent.putExtra("problemCorrectCount", problemCorrectCount);
+                intent.putExtra("questionCount", questionCount);
+                intent.putExtra("gameName", gameName);
+                startActivity(intent);
+            }
+        };
+
+
+        problemCorrectCount = 0;
         imageViewTurn = 0;
         firstRound = true;
+        gameName = "phaseout";
 
         super.onCreate(savedInstanceState);
 
@@ -114,6 +141,7 @@ public class PhaseGamePlay extends Activity {
         answerView2 = (TextView) findViewById(R.id.answerView2);
         moonView0 = (ImageView) findViewById(R.id.moonView0);
         moonView1 = (ImageView) findViewById(R.id.moonView1);
+        scoreView = (TextView) findViewById(R.id.scoreView);
 
         Log.i("moonView1", ("MoonView 0 position setup " + moonView1.getX()));
 
@@ -123,12 +151,6 @@ public class PhaseGamePlay extends Activity {
         differentView.setTranslationX(2000f);
 
         moonView1.setAnimation(animationReset);
-        //moonView1.setTranslationX(2000);
-        //moonView1.setAlpha(0);
-
-
-
-
 
         Glide.with(this)
                 .load(R.drawable.phase)
@@ -144,11 +166,14 @@ public class PhaseGamePlay extends Activity {
 
     public void gameStart(View view){
 
+        playPhaser();
+
         outView = (ImageView) findViewById(R.id.outView);
         titleView = (ImageView) findViewById(R.id.titleView);
         sameView = (TextView) findViewById(R.id.sameView);
         differentView = (TextView) findViewById(R.id.differentView);
         answerView = (TextView) findViewById(R.id.answerView);
+        timerView = (TextView) findViewById(R.id.timerView);
 
         answerView.setVisibility(View.GONE);
         answerView2.setVisibility(View.VISIBLE);
@@ -158,8 +183,6 @@ public class PhaseGamePlay extends Activity {
 
         Log.i("moonView1", ("MoonView 1 position setup " + moonView0.getX()));
 
-        //answerView2.setText("Left Position" + moonView2.getX());
-
         answerView2.setText("Remember This Image! Click Here To Begin");
 
         currentPhase = random.nextInt(4);
@@ -168,14 +191,13 @@ public class PhaseGamePlay extends Activity {
                 .load(myImageList[currentPhase])
                 .into(moonView0);
 
-
-        //imageViewTurn = 1;
-        //mPlayer.release();
+        gameClock.start();
     }
 
 
 
     public void generatePhase(View view) {
+        mPlayer.release();
         TextView answerChosen = (TextView) view;
         // Identifies which imageview was clicked for token placement
         answer = answerChosen.getTag().toString();
@@ -206,8 +228,6 @@ public class PhaseGamePlay extends Activity {
 
             moonView1.setAnimation(animationIn);
 
-            //imageViewTurn = 1;
-
             firstRound = false;
 
             Log.i("moonView1", ("MoonView 1 after animation " + moonView1.getX()));
@@ -228,14 +248,19 @@ public class PhaseGamePlay extends Activity {
 
             if ((answer.equals("same")) && (phaseCompare.equals("same"))) {
                 answerView2.setText("Correct!");
-                score++;
+                problemCorrectCount++;
+                questionCount++;
             } else if ((answer.equals("different")) && (phaseCompare.equals("different"))) {
                 answerView2.setText("Correct!");
-                score++;
+                problemCorrectCount++;
+                questionCount++;
 
             } else {
                 answerView2.setText("Sorry!");
+                questionCount++;
             }
+
+            scoreView.setText(problemCorrectCount + "/" + questionCount);
 
             Log.i("imageViewTurn", ("check " + imageViewTurn));
 

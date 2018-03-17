@@ -9,17 +9,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".GamePlay"></activity>
-        <activity android:name=".GameOver"></activity>
-        <activity android:name=".Menu"></activity>
-        <activity android:name=".PhaseGamePlay"></activity>
+
+        <activity android:name=".GamePlay" android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".GameOver" android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".Menu" android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".PhaseGamePlay" android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".SomeoneGamePlay" android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>

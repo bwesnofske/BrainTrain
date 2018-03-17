@@ -28,6 +28,7 @@ public class GameOver extends Activity {
     int problemCorrectCount;
     int questionCount;
     MediaPlayer mPlayer3;
+    String gameName;
 
 
 
@@ -44,6 +45,7 @@ public class GameOver extends Activity {
 
         problemCorrectCount = getIntent().getIntExtra("problemCorrectCount", 0);
         questionCount = getIntent().getIntExtra("questionCount", 0);
+        gameName = getIntent().getStringExtra("gameName");
 
         resultsView = (TextView) findViewById(R.id.resultsView);
         highScoreView = (TextView) findViewById(R.id.highScoreView);
@@ -51,8 +53,6 @@ public class GameOver extends Activity {
         resultsView.setText("You Got " + problemCorrectCount + " Correct Out of " + questionCount + "!!!");
 
         checkHighScore();
-
-
 
     }
 
@@ -73,9 +73,20 @@ public class GameOver extends Activity {
 
 
     public void playAgain(View v) {
-        Intent intent = new Intent(GameOver.this, GamePlay.class);
-        startActivity(intent);
+        if (gameName.equalsIgnoreCase("additup")) {
+            Intent intent = new Intent(GameOver.this, GamePlay.class);
+            startActivity(intent);
+
+        } else if (gameName.equalsIgnoreCase("phaseout")) {
+            Intent intent = new Intent(GameOver.this, PhaseGamePlay.class);
+            startActivity(intent);
+
+        } else if (gameName.equalsIgnoreCase("someonesays")) {
+            Intent intent = new Intent(GameOver.this, GamePlay.class);
+            startActivity(intent);
+        }
     }
+
 
     private void victory()
     {
