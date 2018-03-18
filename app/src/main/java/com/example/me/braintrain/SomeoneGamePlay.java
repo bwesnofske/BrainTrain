@@ -51,18 +51,6 @@ public class SomeoneGamePlay extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.somesays_screen);
-
-        noGlowView = (ImageView) findViewById(R.id.noGlowView);
-
-
-        animationLight = AnimationUtils.loadAnimation(this,R.anim.animationlight);
-        animationLight.setFillAfter(true);
-
-        //offView.setAnimation(animationLight);
-
         gameClock = new CountDownTimer(20000, 1000) {
 
             @Override
@@ -85,35 +73,92 @@ public class SomeoneGamePlay extends Activity {
             }
         };
 
-        //playLight();
-
-
-        //Light animation.  Should only need to have lighton(noglow) become visable and not.  Then at the end make glow visable.
-        // setelevation to make sure correct views are layered right.  Z value
 
         gameName = "someonesays";
         problemCorrectCount = 0;
         questionCount = 0;
 
-        //noGlowView.setAlpha(0.0f);
-        //glowView.setAlpha(0.0f);
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.somesays_screen);
+
+        offView = (ImageView) findViewById(R.id.offView);
+        noGlowView = (ImageView) findViewById(R.id.noGlowView);
+        glowView = (ImageView) findViewById(R.id.glowView);
+
+
+        Glide.with(this)
+                .load(R.drawable.ssoff)
+                .into(offView);
+
+
+        //playLight();
+
+        //Light animation.  Should only need to have lighton(noglow) become visable and not.  Then at the end make glow visable.
+        // setelevation to make sure correct views are layered right.  Z value
+
+
 
 
     }
 
+
     public void saysGameStart(View view){
+        final View curView = view;
+
+        playLight();
+
+        Glide.with(this)
+                .load(R.drawable.ssnoglow)
+                .into(noGlowView);
+        /*
+        Glide.with(this)
+                .load(R.drawable.ssglow)
+                .into(glowView);
+
+        */
+        noGlowView = (ImageView) findViewById(R.id.noGlowView);
+        glowView = (ImageView) findViewById(R.id.glowView);
+        animationLight = AnimationUtils.loadAnimation(this,R.anim.animationlight);
+        animationLight.setFillAfter(true);
+        //animationLight.setDuration(1500);
+
+        animationLight.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                signAnimateFinal(curView);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
 
         noGlowView.setAnimation(animationLight);
-
+        //mPlayer.release();
         //gameClock.start();
     }
 
+    public void signAnimateFinal(View view) {
+        Glide.with(this)
+                .load(R.drawable.ssglow)
+                .into(glowView);
 
+        noGlowView = (ImageView) findViewById(R.id.noGlowView);
+        glowView = (ImageView) findViewById(R.id.glowView);
+        animationLight = AnimationUtils.loadAnimation(this, R.anim.animationlight);
+        animationLight.setFillAfter(true);
+
+        glowView.setAnimation(animationLight);
+    }
 
     private void playLight() {
         mPlayer = MediaPlayer.create(this, R.raw.neonedit);
         mPlayer.start();
-
     }
 
 }
