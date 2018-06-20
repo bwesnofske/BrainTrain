@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -33,11 +35,13 @@ public class SomeoneGamePlay extends Activity {
 
     int problemCorrectCount;
     int questionCount;
+    int randomPattern;
 
-    CountDownTimer gameClock;
+    CountDownTimer startDelay;
 
     TextView scoreView;
     TextView timerView;
+    TextView answerView;
 
     ImageView offView;
     ImageView noGlowView;
@@ -45,30 +49,28 @@ public class SomeoneGamePlay extends Activity {
 
 
     Animation animationLight;
-    Animation animationIn;
+    Animation animationPattern;
+    Animation animationOff;
+
+    ArrayList<Integer> patternArrayList;
+    int[] myImageList;
+
+    Random random = new Random();
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        gameClock = new CountDownTimer(20000, 1000) {
+        startDelay = new CountDownTimer(3000, 1000) {
 
             @Override
             public void onTick(long l) {
-                long seconds = l / 1000;
-                if (seconds < 10) {
-                    timerView.setText("00:0" + l / 1000);
-                } else {
-                    timerView.setText("00:" + l / 1000);
-                }
+
             }
 
             @Override
             public void onFinish() {
-                Intent intent = new Intent(SomeoneGamePlay.this, GameOver.class);
-                intent.putExtra("problemCorrectCount", problemCorrectCount);
-                intent.putExtra("questionCount", questionCount);
-                intent.putExtra("gameName", gameName);
+                Intent intent = new Intent(SomeoneGamePlay.this, SomeoneGamePlay2.class);
                 startActivity(intent);
             }
         };
@@ -78,6 +80,7 @@ public class SomeoneGamePlay extends Activity {
         problemCorrectCount = 0;
         questionCount = 0;
 
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.somesays_screen);
@@ -86,24 +89,31 @@ public class SomeoneGamePlay extends Activity {
         noGlowView = (ImageView) findViewById(R.id.noGlowView);
         glowView = (ImageView) findViewById(R.id.glowView);
 
+        answerView = (TextView) findViewById(R.id.answerView);
+
+
+        animationLight = AnimationUtils.loadAnimation(this, R.anim.animationlight);
+        animationLight.setFillAfter(true);
+
+        patternArrayList = new ArrayList<Integer>();
+
+        patternArrayList.add(0);
+        patternArrayList.add(1);
+
 
         Glide.with(this)
                 .load(R.drawable.ssoff)
                 .into(offView);
 
+        myImageList = new int[]{
+                R.drawable.bglow, R.drawable.rglow, R.drawable.gglow, R.drawable.yglow};
 
         //playLight();
-
-        //Light animation.  Should only need to have lighton(noglow) become visable and not.  Then at the end make glow visable.
-        // setelevation to make sure correct views are layered right.  Z value
-
-
-
 
     }
 
 
-    public void saysGameStart(View view){
+    public void saysGameStart(View view) {
         final View curView = view;
 
         playLight();
@@ -111,17 +121,7 @@ public class SomeoneGamePlay extends Activity {
         Glide.with(this)
                 .load(R.drawable.ssnoglow)
                 .into(noGlowView);
-        /*
-        Glide.with(this)
-                .load(R.drawable.ssglow)
-                .into(glowView);
 
-        */
-        noGlowView = (ImageView) findViewById(R.id.noGlowView);
-        glowView = (ImageView) findViewById(R.id.glowView);
-        animationLight = AnimationUtils.loadAnimation(this,R.anim.animationlight);
-        animationLight.setFillAfter(true);
-        //animationLight.setDuration(1500);
 
         animationLight.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -148,17 +148,21 @@ public class SomeoneGamePlay extends Activity {
                 .load(R.drawable.ssglow)
                 .into(glowView);
 
-        noGlowView = (ImageView) findViewById(R.id.noGlowView);
-        glowView = (ImageView) findViewById(R.id.glowView);
         animationLight = AnimationUtils.loadAnimation(this, R.anim.animationlight);
         animationLight.setFillAfter(true);
 
         glowView.setAnimation(animationLight);
+
+        startDelay.start();
     }
+
+
 
     private void playLight() {
         mPlayer = MediaPlayer.create(this, R.raw.neonedit);
         mPlayer.start();
     }
+
+
 
 }

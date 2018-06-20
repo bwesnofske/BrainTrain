@@ -7,28 +7,16 @@
     android:background="@android:color/background_dark">
 
     <TextView
-        android:id="@+id/timerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:text="00:00"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/roundView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="20dp"
+        android:text="Round"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/scoreView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -37,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="20dp"
-        android:text="0/0"
+        android:text="1"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,11 +44,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView0"
+        <ImageView
+            android:id="@+id/colorView0"
             android:layout_width="150dp"
             android:layout_height="125dp"
-            android:background="@android:color/holo_blue_light"
             android:gravity="center"
             android:onClick="selection"
             android:tag="0"
@@ -68,11 +55,10 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView1"
+        <ImageView
+            android:id="@+id/colorView1"
             android:layout_width="150dp"
             android:layout_height="125dp"
-            android:background="@color/colorAccent"
             android:gravity="center"
             android:onClick="selection"
             android:tag="1"
@@ -80,11 +66,10 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView2"
+        <ImageView
+            android:id="@+id/colorView2"
             android:layout_width="150dp"
             android:layout_height="125dp"
-            android:background="@android:color/holo_orange_light"
             android:gravity="center"
             android:onClick="selection"
             android:tag="2"
@@ -92,11 +77,10 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView3"
+        <ImageView
+            android:id="@+id/colorView3"
             android:layout_width="150dp"
             android:layout_height="125dp"
-            android:background="@android:color/holo_green_dark"
             android:gravity="center"
             android:onClick="selection"
             android:tag="3"
@@ -107,13 +91,13 @@
 
     <TextView
         android:id="@+id/answerView"
-        android:layout_width="200dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="60dp"
-        android:onClick="startGame"
-        android:text="Click to Start"
+        android:onClick="testLoad"
+        android:text="Remember This Pattern"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"

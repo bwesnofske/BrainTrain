@@ -2,17 +2,12 @@ package com.example.me.braintrain;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +98,7 @@ CountDownTimer gameClock;
         textView1 = (TextView) findViewById(R.id.textView1);
         textView2 = (TextView) findViewById(R.id.textView2);
         textView3 = (TextView) findViewById(R.id.textView3);
-        problemView = (TextView) findViewById(R.id.problemView);
+        problemView = (TextView) findViewById(R.id.roundView);
         scoreView = (TextView) findViewById(R.id.scoreView);
         answerView = (TextView) findViewById(R.id.answerView);
 
