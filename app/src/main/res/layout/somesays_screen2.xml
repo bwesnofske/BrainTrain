@@ -44,49 +44,127 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <ImageView
             android:id="@+id/colorView0"
             android:layout_width="150dp"
             android:layout_height="125dp"
-            android:gravity="center"
-            android:onClick="selection"
-            android:tag="0"
-            android:text="Choices"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/colorView1"
-            android:layout_width="150dp"
-            android:layout_height="125dp"
+            android:layout_column="0"
+            android:layout_row="0"
             android:gravity="center"
             android:onClick="selection"
             android:tag="1"
             android:text="Will"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:srcCompat="@drawable/rnoglow" />
+
+
+        <ImageView
+            android:id="@+id/colorView0Glow"
+            android:layout_width="150dp"
+            android:layout_height="125dp"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:gravity="center"
+            android:onClick="selection"
+            android:tag="1"
+            android:text="Will"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:srcCompat="@drawable/rglow" />
+
+        <ImageView
+            android:id="@+id/colorView1"
+            android:layout_width="150dp"
+            android:layout_height="125dp"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:gravity="center"
+            android:onClick="selection"
+            android:tag="1"
+            android:text="Will"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:srcCompat="@drawable/bnoglow" />
+
+        <ImageView
+            android:id="@+id/colorView1Glow"
+            android:layout_width="150dp"
+            android:layout_height="125dp"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:alpha="0"
+            android:gravity="center"
+            android:onClick="selection"
+            android:tag="1"
+            android:text="Will"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:srcCompat="@drawable/bglow" />
+
 
         <ImageView
             android:id="@+id/colorView2"
             android:layout_width="150dp"
             android:layout_height="125dp"
+            android:layout_column="0"
+            android:layout_row="1"
             android:gravity="center"
             android:onClick="selection"
             android:tag="2"
             android:text="Be"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:srcCompat="@drawable/gnoglow" />
+
+
+        <ImageView
+            android:id="@+id/colorView2Glow"
+            android:layout_width="150dp"
+            android:layout_height="125dp"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:alpha="0"
+            android:gravity="center"
+            android:onClick="selection"
+            android:tag="2"
+            android:text="Be"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:srcCompat="@drawable/gglow" />
+
 
         <ImageView
             android:id="@+id/colorView3"
             android:layout_width="150dp"
             android:layout_height="125dp"
+            android:layout_column="1"
+            android:layout_row="1"
             android:gravity="center"
             android:onClick="selection"
             android:tag="3"
             android:text="Here"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:srcCompat="@drawable/ynoglow" />
+
+
+        <ImageView
+            android:id="@+id/colorView3Glow"
+            android:layout_width="150dp"
+            android:layout_height="125dp"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:alpha="0"
+            android:gravity="center"
+            android:onClick="selection"
+            android:tag="3"
+            android:text="Here"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:srcCompat="@drawable/yglow" />
+
     </GridLayout>
 
     <TextView
@@ -95,7 +173,7 @@
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="12dp"
         android:onClick="testLoad"
         android:text="Remember This Pattern"
         android:textAlignment="center"
@@ -105,5 +183,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+
+    <Button
+        android:id="@+id/lightButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="320dp"
+        android:layout_marginRight="320dp"
+        android:layout_marginTop="38dp"
+        android:background="@android:color/holo_blue_dark"
+        android:onClick="test"
+        android:text="Button"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/bglow"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="52dp" />
+
 
 </android.support.constraint.ConstraintLayout>
