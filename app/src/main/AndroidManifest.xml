@@ -31,12 +31,6 @@
         <activity android:name=".PhaseGamePlay" android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".SomeoneGamePlay" android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".SomeoneGamePlay2" android:screenOrientation="portrait">
-
-        </activity>
     </application>
 
 </manifest>

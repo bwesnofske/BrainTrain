@@ -39,12 +39,14 @@ public class Menu extends Activity {
 
     }
 
+    /*
     public void onClickSomeoneSays(View v) {
 
         Intent intent = new Intent(Menu.this, SomeoneGamePlay.class);
         startActivity(intent);
 
     }
+    */
 
 
 }
