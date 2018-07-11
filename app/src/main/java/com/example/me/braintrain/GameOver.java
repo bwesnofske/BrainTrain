@@ -58,27 +58,32 @@ public class GameOver extends Activity {
 
     public void checkHighScore() {
         SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.me.sharedpreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
 
         if (gameName.equalsIgnoreCase("phaseout")) {
-            int currentHighScore = sharedPreferences.getInt("PHASEHIGHSCORE", -1);
+            int currentHighScore = sharedPreferences.getInt("PHASEHIGHSCORE", 0);
 
             if (problemCorrectCount > currentHighScore) {
-                sharedPreferences.edit().putInt("HIGHSCORE", problemCorrectCount).apply();
+
+                editor.putInt("PHASEHIGHSCORE", problemCorrectCount).apply();
                 highScoreView.setText("New High Score!!! " + problemCorrectCount);
+
             } else {
                 highScoreView.setText("Current High Score " + currentHighScore);
             }
 
+
         }
 
-        if (gameName.equalsIgnoreCase("additup")) {
-            int currentHighScore = sharedPreferences.getInt("ADDHIGHSCORE", -1);
-
-            //sharedPreferences.edit().putInt("HIGHSCORE", 3).apply();
+        else if (gameName.equalsIgnoreCase("additup")) {
+            int currentHighScore = sharedPreferences.getInt("ADDHIGHSCORE", 0);
 
             if (problemCorrectCount > currentHighScore) {
-                sharedPreferences.edit().putInt("HIGHSCORE", problemCorrectCount).apply();
+
+                editor.putInt("ADDHIGHSCORE", problemCorrectCount).apply();
                 highScoreView.setText("New High Score!!! " + problemCorrectCount);
+
             } else {
                 highScoreView.setText("Current High Score " + currentHighScore);
             }

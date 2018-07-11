@@ -105,6 +105,7 @@ CountDownTimer gameClock;
         gameClock.start();
         nextQuestion(view);
         answerView.setText(" ");
+        gameName = "additup";
 
 
     }
